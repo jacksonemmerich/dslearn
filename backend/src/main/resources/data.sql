@@ -19,3 +19,6 @@ INSERT INTO tb_offer (edition, start_moment, end_moment, course_id) VALUES ('1.0
 INSERT INTO tb_offer (edition, start_moment, end_moment, course_id) VALUES ('2.0', TIMESTAMP WITH TIME ZONE '2022-10-20T03:00:00Z',TIMESTAMP WITH TIME ZONE '2022-10-20T03:00:00Z',1);
 
 INSERT INTO tb_notification (moment, read, route,text, user_id) VALUES (NOW(), false, 'sei lá', 'testo qualquer',1);
+
+
+INSERT INTO tb_resource (title, description, position, imgUri, type, offer_id) VALUES ('Trilha HTML', 'Trilha principal do curso', 1, 'https://i.imgur.com/oKY1wyk.png', 1, 1 );
