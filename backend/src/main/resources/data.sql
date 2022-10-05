@@ -21,4 +21,6 @@ INSERT INTO tb_offer (edition, start_moment, end_moment, course_id) VALUES ('2.0
 INSERT INTO tb_notification (moment, read, route,text, user_id) VALUES (NOW(), false, 'sei lá', 'testo qualquer',1);
 
 
-INSERT INTO tb_resource (title, description, position, imgUri, type, offer_id) VALUES ('Trilha HTML', 'Trilha principal do curso', 1, 'https://i.imgur.com/oKY1wyk.png', 1, 1 );
+INSERT INTO tb_resource (title, description, position, img_Uri, type, offer_id) VALUES ('Trilha HTML', 'Trilha principal do curso', 1, 'https://i.imgur.com/oKY1wyk.png', 1, 1 );
+INSERT INTO tb_resource (title, description, position, img_Uri, type, offer_id) VALUES ('Forum', 'tire suas dúvidas', 2, 'https://i.imgur.com/oKY1wyk.png', 2, 1 );
+INSERT INTO tb_resource (title, description, position, img_Uri, type, offer_id) VALUES ('Lives', 'Lives exclusivas para a turma', 1, 'https://i.imgur.com/oKY1wyk.png', 0, 1 );
