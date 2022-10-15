@@ -2,11 +2,14 @@ package com.devsuperior.dslearnbds.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.devsuperior.dslearnbds.entities.pk.EnrollmentPK;
@@ -19,14 +22,17 @@ public class Enrollment implements Serializable {
 
 	@EmbeddedId
 	private EnrollmentPK id = new EnrollmentPK();
-	
+
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant enrollMoment;
-	
+
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant refundMoment;
 	private boolean available;
 	private boolean onlyUpdate;
+
+	@ManyToMany(mappedBy = "enrollmentDone")
+	private Set<Lesson> lessonsDone = new HashSet<>();
 
 	public Enrollment() {
 
@@ -42,24 +48,35 @@ public class Enrollment implements Serializable {
 		this.available = available;
 		this.onlyUpdate = onlyUpdate;
 	}
+	
+	
+
+	public Enrollment(EnrollmentPK id, Instant enrollMoment, Instant refundMoment, boolean available,
+			boolean onlyUpdate, Set<Lesson> lessonsDone) {
+		super();
+		this.id = id;
+		this.enrollMoment = enrollMoment;
+		this.refundMoment = refundMoment;
+		this.available = available;
+		this.onlyUpdate = onlyUpdate;
+		this.lessonsDone = lessonsDone;
+	}
 
 	public User getStudent() {
 		return id.getUser();
 	}
-	
+
 	public void setStudent(User user) {
 		id.setUser(user);
 	}
-	
-	
+
 	public Offer getOffer() {
 		return id.getOffer();
 	}
-	
+
 	public void setOffer(Offer offer) {
 		id.setOffer(offer);
 	}
-	
 
 	public Instant getEnrollMoment() {
 		return enrollMoment;
@@ -91,6 +108,10 @@ public class Enrollment implements Serializable {
 
 	public void setRefundMoment(Instant refundMoment) {
 		this.refundMoment = refundMoment;
+	}
+
+	public Set<Lesson> getLessonsDone() {
+		return lessonsDone;
 	}
 
 	@Override
