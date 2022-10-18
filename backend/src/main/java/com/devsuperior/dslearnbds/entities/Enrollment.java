@@ -1,8 +1,9 @@
 package com.devsuperior.dslearnbds.entities;
 
-import java.io.Serializable;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -10,15 +11,14 @@ import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.devsuperior.dslearnbds.entities.pk.EnrollmentPK;
 
 @Entity
 @Table(name = "tb_enrollment")
-public class Enrollment implements Serializable {
-
-	private static final long serialVersionUID = 1L;
+public class Enrollment {
 
 	@EmbeddedId
 	private EnrollmentPK id = new EnrollmentPK();
@@ -31,8 +31,11 @@ public class Enrollment implements Serializable {
 	private boolean available;
 	private boolean onlyUpdate;
 
-	@ManyToMany(mappedBy = "enrollmentDone")
+	@ManyToMany(mappedBy = "enrollmentsDone")
 	private Set<Lesson> lessonsDone = new HashSet<>();
+
+	@OneToMany(mappedBy = "enrollment")
+	private List<Deliver> deliveries = new ArrayList<>();
 
 	public Enrollment() {
 
@@ -48,18 +51,16 @@ public class Enrollment implements Serializable {
 		this.available = available;
 		this.onlyUpdate = onlyUpdate;
 	}
-	
-	
 
 	public Enrollment(EnrollmentPK id, Instant enrollMoment, Instant refundMoment, boolean available,
-			boolean onlyUpdate, Set<Lesson> lessonsDone) {
+			boolean onlyUpdate) {
 		super();
 		this.id = id;
 		this.enrollMoment = enrollMoment;
 		this.refundMoment = refundMoment;
 		this.available = available;
 		this.onlyUpdate = onlyUpdate;
-		this.lessonsDone = lessonsDone;
+
 	}
 
 	public User getStudent() {
@@ -112,6 +113,10 @@ public class Enrollment implements Serializable {
 
 	public Set<Lesson> getLessonsDone() {
 		return lessonsDone;
+	}
+
+	public List<Deliver> getDeliveries() {
+		return deliveries;
 	}
 
 	@Override
