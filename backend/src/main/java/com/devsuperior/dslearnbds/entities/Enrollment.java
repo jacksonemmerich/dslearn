@@ -52,17 +52,6 @@ public class Enrollment {
 		this.onlyUpdate = onlyUpdate;
 	}
 
-	public Enrollment(EnrollmentPK id, Instant enrollMoment, Instant refundMoment, boolean available,
-			boolean onlyUpdate) {
-		super();
-		this.id = id;
-		this.enrollMoment = enrollMoment;
-		this.refundMoment = refundMoment;
-		this.available = available;
-		this.onlyUpdate = onlyUpdate;
-
-	}
-
 	public User getStudent() {
 		return id.getUser();
 	}
